@@ -4,7 +4,7 @@ let users = [
     {
         id: 1,
         username: 'admin',
-        password: '$2a$10$N9qo8uLOickgx2ZMRZoMye.IjQ0dV7GvXY4jCQvPFx0q1Q5rL.ykq',
+        password: '$2a$10$rmSFzTyr2OjB09Jt.TMXpeFhhIsvSshCc09oj85osttRnMv.oJtHu',
         role: 'admin',
         real_name: '系统管理员',
         department: '信息中心',
@@ -88,10 +88,10 @@ const query = async (sql, params = []) => {
         if (sql.includes('select') && sql.includes('users')) {
             let result = [...users];
             
-            if (sql.includes('where username =')) {
+            if (sql.includes('where username =') || sql.includes('where username=?')) {
                 const username = params[0];
                 result = result.filter(u => u.username === username);
-            } else if (sql.includes('where id =')) {
+            } else if (sql.includes('where id =') || sql.includes('where id=?')) {
                 const id = parseInt(params[0]);
                 result = result.filter(u => u.id === id);
             }
