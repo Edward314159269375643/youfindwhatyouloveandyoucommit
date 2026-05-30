@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const fs = require('fs');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
@@ -17,11 +16,6 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.text({ type: 'text/xml' }));
 
-const uploadDir = process.env.UPLOAD_DIR || 'uploads';
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-}
-app.use('/uploads', express.static(path.join(__dirname, uploadDir)));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
