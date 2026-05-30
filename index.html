@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简介</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin-bottom: 20px;
+            object-fit: cover;
+            background: #ddd;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header .title {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .section p {
+            color: #555;
+            font-size: 1.1em;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-align: center;
+            font-size: 0.95em;
+        }
+
+        .experience-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-item h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .experience-item .date {
+            color: #667eea;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .experience-item p {
+            font-size: 1em;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .contact-item .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.3em;
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <img src="https://via.placeholder.com/150" alt="头像" class="avatar" id="avatar">
+                <h1 id="name">张三</h1>
+                <p class="title" id="title">全栈开发工程师</p>
+            </div>
+
+            <div class="content">
+                <div class="section">
+                    <h2>关于我</h2>
+                    <p id="about">我是一名热爱技术的全栈开发工程师，拥有5年以上的Web开发经验。擅长使用Python、JavaScript、Java等语言进行开发，对前端和后端技术都有深入的了解。我喜欢学习新技术，追求代码优雅和系统性能优化。</p>
+                </div>
+
+                <div class="section">
+                    <h2>技术技能</h2>
+                    <div class="skills-grid" id="skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS</span>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>工作经验</h2>
+                    <div id="experience">
+                        <div class="experience-item">
+                            <h3>高级开发工程师 - 某互联网公司</h3>
+                            <p class="date">2021年 - 至今</p>
+                            <p>负责公司核心产品的架构设计与开发，带领团队完成多个重要项目。</p>
+                        </div>
+                        <div class="experience-item">
+                            <h3>开发工程师 - 某科技公司</h3>
+                            <p class="date">2018年 - 2021年</p>
+                            <p>参与后端服务开发，负责API设计与数据库优化。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>教育背景</h2>
+                    <div id="education">
+                        <div class="experience-item">
+                            <h3>计算机科学硕士 - 某大学</h3>
+                            <p class="date">2016年 - 2018年</p>
+                            <p>研究方向：分布式系统与云计算</p>
+                        </div>
+                        <div class="experience-item">
+                            <h3>计算机科学与技术学士 - 某大学</h3>
+                            <p class="date">2012年 - 2016年</p>
+                            <p>GPA: 3.8/4.0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>联系方式</h2>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <div class="icon">📧</div>
+                            <span id="email">zhangsan@example.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon">📱</div>
+                            <span id="phone">138-0000-0000</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon">📍</div>
+                            <span id="location">北京市朝阳区</span>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="GitHub">GH</a>
+                        <a href="#" class="social-link" title="LinkedIn">IN</a>
+                        <a href="#" class="social-link" title="个人博客">B</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

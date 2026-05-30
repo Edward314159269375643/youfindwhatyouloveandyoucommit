@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医院导诊系统 - 管理后台登录</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            width: 100%;
+            max-width: 420px;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #1890ff, #096dd9);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .login-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .login-form {
+            padding: 40px 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e8e8e8;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #1890ff;
+            box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.1);
+        }
+
+        .form-group .error-message {
+            color: #ff4d4f;
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .form-group.has-error input {
+            border-color: #ff4d4f;
+        }
+
+        .form-group.has-error .error-message {
+            display: block;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .remember-me label {
+            color: #666;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #1890ff, #096dd9);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(24, 144, 255, 0.4);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .login-button:disabled {
+            background: #d9d9d9;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .login-footer {
+            text-align: center;
+            padding: 20px;
+            background: #fafafa;
+            border-top: 1px solid #e8e8e8;
+        }
+
+        .login-footer p {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #1890ff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>🏥 医院导诊系统</h1>
+            <p>管理后台登录</p>
+        </div>
+        
+        <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group" id="usernameGroup">
+                <label for="username">用户名</label>
+                <input type="text" id="username" name="username" placeholder="请输入用户名" required autocomplete="username">
+                <div class="error-message">请输入用户名</div>
+            </div>
+            
+            <div class="form-group" id="passwordGroup">
+                <label for="password">密码</label>
+                <input type="password" id="password" name="password" placeholder="请输入密码" required autocomplete="current-password">
+                <div class="error-message">请输入密码</div>
+            </div>
+            
+            <div class="remember-me">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">记住登录状态</label>
+            </div>
+            
+            <button type="submit" class="login-button" id="loginBtn">
+                登录
+            </button>
+            
+            <a href="chat.html" class="back-link">← 返回导诊助手</a>
+        </form>
+        
+        <div class="login-footer">
+            <p>© 2024 医院导诊系统 | 保障信息安全</p>
+        </div>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script>
+        const API_BASE_URL = window.CONFIG.API_BASE_URL;
+
+        if (localStorage.getItem('adminToken')) {
+            window.location.href = 'dashboard.html';
+        }
+
+        const savedUsername = localStorage.getItem('savedUsername');
+        if (savedUsername) {
+            document.getElementById('username').value = savedUsername;
+            document.getElementById('remember').checked = true;
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+            const loginBtn = document.getElementById('loginBtn');
+            
+            let hasError = false;
+            
+            document.getElementById('usernameGroup').classList.remove('has-error');
+            document.getElementById('passwordGroup').classList.remove('has-error');
+            
+            if (!username) {
+                document.getElementById('usernameGroup').classList.add('has-error');
+                hasError = true;
+            }
+            
+            if (!password) {
+                document.getElementById('passwordGroup').classList.add('has-error');
+                hasError = true;
+            }
+            
+            if (hasError) return;
+            
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<span class="loading"></span>登录中...';
+            
+            fetch(`${API_BASE_URL}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    localStorage.setItem('adminToken', data.token);
+                    localStorage.setItem('adminUser', JSON.stringify(data.user));
+                    
+                    if (remember) {
+                        localStorage.setItem('savedUsername', username);
+                    } else {
+                        localStorage.removeItem('savedUsername');
+                    }
+                    
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert(data.error || '登录失败');
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = '登录';
+                }
+            })
+            .catch(error => {
+                console.error('登录错误:', error);
+                alert('网络错误，请检查服务器连接');
+                loginBtn.disabled = false;
+                loginBtn.textContent = '登录';
+            });
+        }
+    </script>
+</body>
+</html>
